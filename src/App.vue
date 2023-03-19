@@ -1,5 +1,5 @@
 <script setup>
-import { EssencePanels } from './components/EssencePanels.vue'
+import EssencePanels from './components/EssencePanels.vue'
 </script>
 
 <template>
