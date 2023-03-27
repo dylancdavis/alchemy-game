@@ -19,11 +19,13 @@
 </script>
 
 <template>
- <div id="core-panel">
+	<div id="core-panel">
 	<div id="true-core" :style="outerStyle">
-		<div id="true-core-inner" :style="innerStyle"></div>
+		<div id="true-core-inner" :style="innerStyle">
+		<img src="../assets/svg/swirl.svg" />
 	</div>
- </div>
+	</div>
+	</div>
 </template>
 
 <style scoped>
@@ -37,14 +39,16 @@
 		border-radius: 100%;
 		border: 1px solid black;
 		display: grid;
-		background-color: dimgray;
+		background-color: rgb(32, 32, 32);
 		place-items: center;
+		transition-delay: 1s;
+		transition: all 0.5ss ease-in-out;
 	}
 
 	#true-core-inner {
 		background-color: aliceblue;
 		border-radius: 100%;
-		transition: 0.1 all;
+		transition: all 1s ease;
 		box-shadow: 0px 0px 4px 2px aliceblue;
 	}
 
