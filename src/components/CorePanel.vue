@@ -1,10 +1,28 @@
 <script setup>
-	console.log('hi!')
+	import { defineProps, computed } from 'vue'
+	const props = defineProps(['essence', 'essenceMax'])
+
+	const outerStyle = (computed(() => {
+		return {
+		width: `${props.essenceMax*64}px`,
+		height: `${props.essenceMax*64}px`
+	}
+	}))
+
+	const innerStyle = (computed(() => {
+		return {
+		width: `${props.essence*58}px`,
+		height: `${props.essence*58}px`
+	}
+	}))
+
 </script>
 
 <template>
  <div id="core-panel">
-	<div id="true-core"></div>
+	<div id="true-core" :style="outerStyle">
+		<div id="true-core-inner" :style="innerStyle"></div>
+	</div>
  </div>
 </template>
 
@@ -16,10 +34,18 @@
 	}
 
 	#true-core {
-		width: 64px;
-		height: 64px;
 		border-radius: 100%;
 		border: 1px solid black;
+		display: grid;
+		background-color: dimgray;
+		place-items: center;
+	}
+
+	#true-core-inner {
+		background-color: aliceblue;
+		border-radius: 100%;
+		transition: 0.1 all;
+		box-shadow: 0px 0px 4px 2px aliceblue;
 	}
 
 </style>
