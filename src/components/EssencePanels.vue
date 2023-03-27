@@ -6,6 +6,8 @@ const essence = ref(0)
 const essenceMax = ref(10)
 const incrementAmt = ref(1)
 
+const ESSENCE_LIMIT = 1000
+
 const incrementEssence = amt => {
 	console.log('amt', amt);
 	essence.value += amt
@@ -21,6 +23,7 @@ const incrementEssence = amt => {
 
 const incrementEssenceMax = amt => {
 	essenceMax.value += amt
+	if (essenceMax.value > ESSENCE_LIMIT) essenceMax.value = ESSENCE_LIMIT
 }
 
 const disableExpand = ref(false)
