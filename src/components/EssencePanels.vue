@@ -1,12 +1,22 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import CorePanel from './CorePanel.vue'
 
 const essence = ref(0)
-const essenceMax = ref(10)
-const incrementAmt = ref(1)
+const essenceMax = ref(500)
+const incrementAmt = ref(100)
 
 const ESSENCE_LIMIT = 1000
+const MAX_DIAMETER = 512
+const CORE_COEFFICIENT = (MAX_DIAMETER/2)/(Math.sqrt(ESSENCE_LIMIT/Math.PI)) 
+
+const outerSize = computed(() => {
+		return (2*Math.sqrt(essenceMax.value/Math.PI)*CORE_COEFFICIENT)	
+})
+
+const innerSize = computed(() => {
+	return Math.floor((essence.value/essenceMax.value) * outerSize.value)
+})
 
 const incrementEssence = amt => {
 	console.log('amt', amt);
@@ -61,7 +71,7 @@ const contractCore = () => {
 			</div>
 			(Increment Rate: {{ incrementAmt }})
 		</div>
-		<CorePanel class="panel" :essence="essence" :essenceMax="essenceMax" />
+		<CorePanel class="panel" :outerSize="outerSize" :innerSize="innerSize" />
 		<div id="thought-panel" class="panel">thoughts</div>
 	</div>
 </template>
