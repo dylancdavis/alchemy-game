@@ -3,8 +3,9 @@ import { ref, computed } from 'vue'
 import CorePanel from './CorePanel.vue'
 
 const essence = ref(0)
-const essenceMax = ref(500)
-const incrementAmt = ref(100)
+const essenceMax = ref(10)
+const incrementAmt = ref(1)
+const selectedCore = ref(null)
 
 const ESSENCE_LIMIT = 1000
 const MAX_DIAMETER = 512
@@ -41,6 +42,10 @@ const disableContract = ref(true)
 
 const showContract = ref(false)
 
+const selectCore = name => {
+	selectedCore.value = name
+}
+
 const expandCore = () => {
 	disableExpand.value = true
 	setTimeout(() => {
@@ -64,14 +69,15 @@ const contractCore = () => {
 <template>
 	<div id="essence-panels">
 		<div id="text-panel" class="panel">
-			Essence: {{ essence }} / {{ essenceMax }}
-			<div>
+			<div v-if="selectedCore === null">Select a core...</div>
+			<div v-if="selectedCore === 'true'">
+				<div>Essence: {{ essence }} / {{ essenceMax }}</div>
 				<button @click="expandCore" :disabled="disableExpand">Expand</button>
 				<button @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</button>
 			</div>
 			(Increment Rate: {{ incrementAmt }})
 		</div>
-		<CorePanel class="panel" :outerSize="outerSize" :innerSize="innerSize" />
+		<CorePanel @click="selectedCore = null" class="panel" :outerSize="outerSize" :innerSize="innerSize" :selectCore="selectCore" />
 		<div id="thought-panel" class="panel">thoughts</div>
 	</div>
 </template>
