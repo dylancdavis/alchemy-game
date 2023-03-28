@@ -50,7 +50,7 @@ const expandCore = () => {
 	disableExpand.value = true
 	setTimeout(() => {
 		disableExpand.value = false
-	}, 10)
+	}, 1000)
 	incrementEssence(incrementAmt.value)
 }
 
@@ -74,8 +74,8 @@ const contractCore = () => {
 				<div>Essence: {{ essence }} / {{ essenceMax }}</div>
 				<button @click="expandCore" :disabled="disableExpand">Expand</button>
 				<button @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</button>
+				<div>(Increment Rate: {{ incrementAmt }})</div>
 			</div>
-			(Increment Rate: {{ incrementAmt }})
 		</div>
 		<CorePanel @click="selectedCore = null" class="panel" :outerSize="outerSize" :innerSize="innerSize" :selectCore="selectCore" />
 		<div id="thought-panel" class="panel">thoughts</div>

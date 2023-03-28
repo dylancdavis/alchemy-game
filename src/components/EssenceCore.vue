@@ -40,8 +40,8 @@ import { defineProps, computed, ref } from 'vue'
 		border-radius: 100%;
 		border: 2px solid black;
 		background-color: rgb(32, 32, 32);
-		transition: width 0.5s ease-in-out;
-		transition: height 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+		transition: outline 0s;
 		overflow: hidden;
 		position: relative;
 		display: grid;
@@ -52,8 +52,7 @@ import { defineProps, computed, ref } from 'vue'
 	#true-core-inner {
 		background-color: aliceblue;
 		border-radius: 100%;
-		transition: width 1s ease-in-out;
-		transition: height 1s ease-in-out;
+		transition: all 1s ease-in-out;
 		box-shadow: 0px 0px 4px 2px aliceblue;
 		display: grid;
 		position: absolute;
