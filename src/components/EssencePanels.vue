@@ -68,17 +68,17 @@ const contractCore = () => {
 
 <template>
 	<div id="essence-panels">
-		<div id="text-panel" class="panel">
+		<v-card id="text-panel" class="panel">
 			<div v-if="selectedCore === null">Select a core...</div>
 			<div v-if="selectedCore === 'true'">
 				<div>Essence: {{ essence }} / {{ essenceMax }}</div>
-				<button @click="expandCore" :disabled="disableExpand">Expand</button>
-				<button @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</button>
+				<v-btn @click="expandCore" :disabled="disableExpand">Expand</v-btn>
+				<v-btn @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</v-btn>
 				<div>(Increment Rate: {{ incrementAmt }})</div>
 			</div>
-		</div>
+		</v-card>
 		<CorePanel @click="selectedCore = null" class="panel" :outerSize="outerSize" :innerSize="innerSize" :selectCore="selectCore" />
-		<div id="thought-panel" class="panel">thoughts</div>
+		<v-card id="thought-panel" class="panel">thoughts</v-card>
 	</div>
 </template>
 
@@ -93,10 +93,6 @@ const contractCore = () => {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 3fr 1fr;
 		padding: 16px;
-	}
-
-	.panel {
-		border: 2px solid black
 	}
 
 	#core-panel {

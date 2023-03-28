@@ -5,9 +5,9 @@
 </script>
 
 <template>
-	<div id="core-panel">
+	<v-card id="core-panel" variant="tonal">
 		<EssenceCore :innerSize="props.innerSize" :outerSize="props.outerSize" :selectCore="props.selectCore" />
-	</div>
+	</v-card>
 </template>
 
 <style scoped>
