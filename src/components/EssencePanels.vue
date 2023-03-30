@@ -90,7 +90,6 @@ const contractCore = () => {
 		</div>
 		</v-card>
 		<CorePanel @click="selectedCore = null" class="panel" :outerSize="outerSize" :innerSize="innerSize" :selectCore="selectCore" />
-		<v-card id="thought-panel" class="panel">thoughts</v-card>
 	</div>
 </template>
 
@@ -99,16 +98,10 @@ const contractCore = () => {
 	#essence-panels {
 		width: 100%;
 		height: 100%;
-		display: grid;
-		grid-gap: 8px;
 		background-color: darkgray;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 3fr 1fr;
 		padding: 16px;
-	}
-
-	#core-panel {
-		grid-row: span 2;
 	}
 
 	.panel {
