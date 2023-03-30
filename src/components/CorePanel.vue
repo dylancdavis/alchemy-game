@@ -5,7 +5,7 @@
 </script>
 
 <template>
-	<v-card id="core-panel" variant="tonal">
+	<v-card :ripple="false" id="core-panel" variant="tonal">
 		<EssenceCore :innerSize="props.innerSize" :outerSize="props.outerSize" :selectCore="props.selectCore" />
 	</v-card>
 </template>

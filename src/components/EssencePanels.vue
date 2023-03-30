@@ -42,7 +42,7 @@ const disableContract = ref(true)
 
 const showContract = ref(false)
 
-const knowledge = ref(0)
+const data = ref(0)
 
 const selectCore = name => {
 	selectedCore.value = name
@@ -71,15 +71,23 @@ const contractCore = () => {
 <template>
 	<div id="essence-panels">
 		<v-card id="text-panel" class="panel">
-			<div v-if="selectedCore === null">Select a core...</div>
-			<div v-if="selectedCore === 'true'">
-				<div>Essence: {{ essence }} / {{ essenceMax }}</div>
-				<div>Knowledge: {{ knowledge }}</div>
-				<v-btn @click="knowledge++" :disabled="disableObserve">Observe Core</v-btn>
-				<v-btn @click="expandCore" :disabled="disableExpand">Expand</v-btn>
-				<v-btn @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</v-btn>
+			<h1>Notebook</h1>
+			<v-container>Data: {{ data }}</v-container>
+			<v-divider vertical></v-divider>
+			<div>
+				<div v-if="selectedCore === null">Select a core...</div>
+				<div v-if="selectedCore === 'true'">
+					<v-divider vertical></v-divider>
+					
+					<h1>Essence Core</h1>
+					<div>Essence: {{ essence }} / {{ essenceMax }}</div>
+					
+					<v-btn :ripple="false" class="gather" @click="data++" :disabled="disableCollectData">Gather Data</v-btn>
+					<v-btn :ripple="false" @click="expandCore" :disabled="disableExpand">Expand</v-btn>
+					<v-btn :ripple="false" @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</v-btn>
 				<div>(Increment Rate: {{ incrementAmt }})</div>
 			</div>
+		</div>
 		</v-card>
 		<CorePanel @click="selectedCore = null" class="panel" :outerSize="outerSize" :innerSize="innerSize" :selectCore="selectCore" />
 		<v-card id="thought-panel" class="panel">thoughts</v-card>
@@ -106,4 +114,5 @@ const contractCore = () => {
 	.panel {
 		padding: 16px;
 	}
+
 </style>
