@@ -42,6 +42,8 @@ const disableContract = ref(true)
 
 const showContract = ref(false)
 
+const knowledge = ref(0)
+
 const selectCore = name => {
 	selectedCore.value = name
 }
@@ -72,6 +74,8 @@ const contractCore = () => {
 			<div v-if="selectedCore === null">Select a core...</div>
 			<div v-if="selectedCore === 'true'">
 				<div>Essence: {{ essence }} / {{ essenceMax }}</div>
+				<div>Knowledge: {{ knowledge }}</div>
+				<v-btn @click="knowledge++" :disabled="disableObserve">Observe Core</v-btn>
 				<v-btn @click="expandCore" :disabled="disableExpand">Expand</v-btn>
 				<v-btn @click="contractCore" :disabled="disableContract" v-show="showContract">Contract</v-btn>
 				<div>(Increment Rate: {{ incrementAmt }})</div>

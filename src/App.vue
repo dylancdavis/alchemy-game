@@ -3,10 +3,10 @@ import EssencePanels from './components/EssencePanels.vue'
 </script>
 
 <template>
-  <div id="content">
+  <v-app id="content">
     <header>Alchemy Game</header>
     <EssencePanels />
-  </div>
+  </v-app>
 </template>
 
 <style scoped> 
@@ -16,8 +16,6 @@ import EssencePanels from './components/EssencePanels.vue'
 }
 
 #content {
-  height: 100vh;
-  width: 100vw;
   display: grid;
   grid-template-rows: min-content 1fr
 }
