@@ -1,13 +1,12 @@
 <script setup>
 import { ref, computed } from "vue";
 import CorePanel from "./CorePanel.vue";
+import ActivitiesPanel from "./ActivitiesPanel.vue";
 
 const essence = ref(0);
 const essenceMax = ref(10);
 const incrementAmt = ref(1);
 const selectedCore = ref(null);
-
-const selectedTab = ref("tasks");
 
 const ESSENCE_LIMIT = 1000;
 const MAX_DIAMETER = 512;
@@ -71,25 +70,7 @@ const contractCore = () => {
   <v-main fluid id="essence-panels">
     <v-row>
       <v-col>
-        <v-sheet class="elevation-4" id="text-panel">
-          <v-tabs
-            v-model="selectedTab"
-            grow
-            bg-color="#333"
-            slider-color="info"
-            color="white"
-          >
-            <v-tab value="tasks" v-ripple="false">Tasks</v-tab>
-            <v-tab value="research" v-ripple="false">Research</v-tab>
-          </v-tabs>
-          <v-window v-model="selectedTab">
-            <v-window-item value="tasks"> Idle </v-window-item>
-            <v-window-item value="research">
-              <h1>Notebook</h1>
-              <div>Data: {{ data }}</div>
-            </v-window-item>
-          </v-window>
-        </v-sheet>
+        <ActivitiesPanel />
       </v-col>
       <v-col>
         <v-sheet class="elevation-4">
@@ -135,9 +116,5 @@ const contractCore = () => {
 #essence-panels {
   background-color: darkgray;
   padding: 16px;
-}
-
-.v-tab {
-  color: #bbb;
 }
 </style>
