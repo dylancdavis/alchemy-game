@@ -4,7 +4,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const useScienceStore = defineStore("science", () => {
+const useScienceStore = defineStore("ScienceStore", () => {
   const data = ref(0);
   const knowledge = ref(0);
   function incrementData() {
