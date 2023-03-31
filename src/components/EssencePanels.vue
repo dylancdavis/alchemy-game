@@ -68,18 +68,22 @@ const contractCore = () => {
 </script>
 
 <template>
-  <v-container fluid id="essence-panels">
+  <v-main fluid id="essence-panels">
     <v-row>
       <v-col>
-        <v-sheet id="text-panel" class="panel">
-          <v-tabs v-model="selectedTab" grow>
-            <v-tab value="tasks">Tasks</v-tab>
-            <v-tab value="research">Research</v-tab>
+        <v-sheet class="elevation-4" id="text-panel">
+          <v-tabs
+            v-model="selectedTab"
+            grow
+            bg-color="#333"
+            slider-color="info"
+            color="white"
+          >
+            <v-tab value="tasks" v-ripple="false">Tasks</v-tab>
+            <v-tab value="research" v-ripple="false">Research</v-tab>
           </v-tabs>
           <v-window v-model="selectedTab">
-            <v-window-item value="tasks">
-              <v-card tonal>Idle</v-card>
-            </v-window-item>
+            <v-window-item value="tasks"> Idle </v-window-item>
             <v-window-item value="research">
               <h1>Notebook</h1>
               <div>Data: {{ data }}</div>
@@ -88,7 +92,7 @@ const contractCore = () => {
         </v-sheet>
       </v-col>
       <v-col>
-        <v-sheet>
+        <v-sheet class="elevation-4">
           <v-container v-if="selectedCore === null"
             >Select a core...</v-container
           >
@@ -114,29 +118,26 @@ const contractCore = () => {
             >
             <div>(Increment Rate: {{ incrementAmt }})</div>
           </v-container>
+          <CorePanel
+            @click="selectedCore = null"
+            class="panel"
+            :outerSize="outerSize"
+            :innerSize="innerSize"
+            :selectCore="selectCore"
+          />
         </v-sheet>
-        <CorePanel
-          @click="selectedCore = null"
-          class="panel"
-          :outerSize="outerSize"
-          :innerSize="innerSize"
-          :selectCore="selectCore"
-      /></v-col>
+      </v-col>
     </v-row>
-  </v-container>
+  </v-main>
 </template>
 
 <style scoped>
 #essence-panels {
-  width: 100%;
-  height: 100%;
   background-color: darkgray;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 3fr 1fr;
   padding: 16px;
 }
 
-.panel {
-  padding: 16px;
+.v-tab {
+  color: #bbb;
 }
 </style>
