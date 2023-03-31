@@ -6,7 +6,7 @@ const data = ref(0);
 </script>
 
 <template>
-  <v-sheet class="elevation-4" id="text-panel">
+  <v-sheet class="elevation-4">
     <v-tabs
       v-model="selectedTab"
       grow

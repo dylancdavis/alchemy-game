@@ -5,7 +5,7 @@ const props = defineProps(["innerSize", "outerSize", "selectCore"]);
 </script>
 
 <template>
-  <v-sheet :ripple="false" id="core-panel" variant="tonal">
+  <v-sheet id="core-panel" variant="tonal">
     <EssenceCore
       :innerSize="props.innerSize"
       :outerSize="props.outerSize"
