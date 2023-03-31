@@ -7,6 +7,8 @@ const essenceMax = ref(10);
 const incrementAmt = ref(1);
 const selectedCore = ref(null);
 
+const selectedTab = ref("tasks");
+
 const ESSENCE_LIMIT = 1000;
 const MAX_DIAMETER = 512;
 const CORE_COEFFICIENT = MAX_DIAMETER / 2 / Math.sqrt(ESSENCE_LIMIT / Math.PI);
@@ -69,18 +71,28 @@ const contractCore = () => {
   <v-container fluid id="essence-panels">
     <v-row>
       <v-col>
-        <v-card id="text-panel" class="panel">
-          <h1>Notebook</h1>
-          <div>Data: {{ data }}</div>
-        </v-card>
+        <v-sheet id="text-panel" class="panel">
+          <v-tabs v-model="selectedTab" grow>
+            <v-tab value="tasks">Tasks</v-tab>
+            <v-tab value="research">Research</v-tab>
+          </v-tabs>
+          <v-window v-model="selectedTab">
+            <v-window-item value="tasks">
+              <v-card tonal>Idle</v-card>
+            </v-window-item>
+            <v-window-item value="research">
+              <h1>Notebook</h1>
+              <div>Data: {{ data }}</div>
+            </v-window-item>
+          </v-window>
+        </v-sheet>
       </v-col>
       <v-col>
-        <div>
+        <v-sheet>
           <v-container v-if="selectedCore === null"
             >Select a core...</v-container
           >
           <v-container v-if="selectedCore === 'true'">
-            <v-divider vertical></v-divider>
             <h1>Essence Core</h1>
             <div>Essence: {{ essence }} / {{ essenceMax }}</div>
             <v-btn
@@ -102,7 +114,7 @@ const contractCore = () => {
             >
             <div>(Increment Rate: {{ incrementAmt }})</div>
           </v-container>
-        </div>
+        </v-sheet>
         <CorePanel
           @click="selectedCore = null"
           class="panel"
