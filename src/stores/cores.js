@@ -22,4 +22,3 @@ const useCoresStore = defineStore("cores", () => {
 });
 
 export const trueCore = useCoresStore();
-export default trueCore;
