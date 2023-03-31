@@ -5,11 +5,11 @@ import ActivitiesPanel from "./ActivitiesPanel.vue";
 
 <template>
   <v-main fluid id="panels-container">
-    <v-row>
-      <v-col>
+    <v-row class="fill-height">
+      <v-col class="fill-height">
         <ActivitiesPanel />
       </v-col>
-      <v-col>
+      <v-col class="fill-height">
         <CoresPanel />
       </v-col>
     </v-row>

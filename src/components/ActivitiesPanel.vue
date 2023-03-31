@@ -6,24 +6,28 @@ const data = ref(0);
 </script>
 
 <template>
-  <v-sheet class="elevation-4">
-    <v-tabs
-      v-model="selectedTab"
-      grow
-      bg-color="#333"
-      slider-color="info"
-      color="white"
-    >
-      <v-tab value="research" v-ripple="false">Research</v-tab>
-    </v-tabs>
-    <v-window v-model="selectedTab">
-      <v-window-item value="research">
-        <h1>Notebook</h1>
-        <div>Data: {{ data }}</div>
-      </v-window-item>
-    </v-window>
-    <v-divider class="border-opacity-75" />
-    <TaskInfo />
+  <v-sheet class="elevation-4 fill-height">
+    <div>
+      <v-tabs
+        v-model="selectedTab"
+        grow
+        bg-color="#333"
+        slider-color="info"
+        color="white"
+      >
+        <v-tab value="research" v-ripple="false">Research</v-tab>
+      </v-tabs>
+      <v-window v-model="selectedTab">
+        <v-window-item value="research">
+          <h1>Notebook</h1>
+          <div>Data: {{ data }}</div>
+        </v-window-item>
+      </v-window>
+    </div>
+    <div>
+      <v-divider class="border-opacity-75" />
+      <TaskInfo />
+    </div>
   </v-sheet>
 </template>
 
@@ -33,5 +37,11 @@ const data = ref(0);
 }
 .v-tab {
   color: #bbb;
+}
+
+.v-sheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
