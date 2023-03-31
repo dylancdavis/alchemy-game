@@ -5,7 +5,7 @@ import { ref } from "vue";
 
 const useCoresStore = defineStore("cores", () => {
   const essence = ref(0);
-  const essenceMax = ref(0);
+  const essenceMax = ref(10);
 
   function incrementEssenceBy(amt) {
     essence.value += amt;
