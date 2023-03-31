@@ -22,7 +22,7 @@ const data = ref(0);
         <div>Data: {{ data }}</div>
       </v-window-item>
     </v-window>
-    <v-divider class="border-opacity-100" />
+    <v-divider class="border-opacity-75" />
     <TaskInfo />
   </v-sheet>
 </template>

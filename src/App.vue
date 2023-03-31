@@ -1,12 +1,12 @@
 <script setup>
 import GameBanner from "./components/GameBanner.vue";
-import EssencePanels from "./components/EssencePanels.vue";
+import GamePanels from "./components/GamePanels.vue";
 </script>
 
 <template>
   <v-app id="content">
     <GameBanner />
-    <EssencePanels />
+    <GamePanels />
   </v-app>
 </template>
 
