@@ -6,7 +6,7 @@ const data = ref(0);
 </script>
 
 <template>
-  <v-sheet class="elevation-4 fill-height">
+  <v-sheet class="elevation-4 fill-height panel">
     <div>
       <v-tabs
         v-model="selectedTab"
@@ -35,11 +35,12 @@ const data = ref(0);
 .v-window-item {
   padding: 24px;
 }
+
 .v-tab {
   color: #bbb;
 }
 
-.v-sheet {
+.panel {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
