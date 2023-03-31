@@ -1,6 +1,7 @@
 <script setup>
-import { computed, reactive } from "vue";
+import { computed, defineProps, reactive } from "vue";
 import EssenceCore from "./EssenceCore.vue";
+const props = defineProps(["innerSize", "outerSize", "selectCore"]);
 
 const core = reactive({
   essence: 0,
