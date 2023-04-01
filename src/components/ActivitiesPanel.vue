@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import TaskInfo from "./TaskInfo.vue";
+import { useScienceStore } from "@/stores/ScienceStore";
+
 const selectedTab = ref("research");
-const data = ref(0);
+const science = useScienceStore();
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const data = ref(0);
       <v-window v-model="selectedTab">
         <v-window-item value="research">
           <h1>Notebook</h1>
-          <div>Data: {{ data }}</div>
+          <div>Data: {{ science.data }}</div>
         </v-window-item>
       </v-window>
     </div>

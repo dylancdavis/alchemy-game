@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useTaskStore = defineStore("TaskStore", () => {
-  const task = ref("idle");
+  const task = ref(null);
   const currentInterval = ref(null);
   const taskProgress = ref(0);
   const taskProgressMax = ref(100);
@@ -12,15 +12,17 @@ export const useTaskStore = defineStore("TaskStore", () => {
 
   function setTask(newTask) {
     task.value = newTask;
-    currentInterval.value = setInterval(incrementTaskProgress, 1000);
+    if (newTask)
+      currentInterval.value = setInterval(incrementTaskProgress, 1000);
   }
 
   function incrementTaskProgress() {
     taskProgress.value += taskProgressIncrement.value;
     if (taskProgress.value >= taskProgressMax.value) {
+      console.log(`Task ${task.value.name} complete!`);
       taskProgress.value = 0;
       currentInterval.value = clearInterval(currentInterval.value);
-      task.value = "idle";
+      task.value = null;
     }
   }
 
