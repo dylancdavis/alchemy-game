@@ -13,7 +13,7 @@ const selectedTab = ref("research");
 const onStudyKnowledge = () => {
   task.setTask({
     name: "Studying Data",
-    work: 100,
+    work: 40,
     onComplete: () => {
       console.log("Studied Data");
       science.convertDataToKnowledge();

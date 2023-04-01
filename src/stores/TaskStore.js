@@ -4,52 +4,57 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useTaskStore = defineStore("TaskStore", () => {
-  const taskName = ref(null);
-  const workLeft = ref(0);
-  const initialWork = ref(0);
-  const taskOnComplete = ref(null);
-  const taskOnCancel = ref(null);
+  const task = ref(null);
   const currentInterval = ref(null);
 
   const percentComplete = computed(() => {
-    if (initialWork.value === 0) return 0;
-    return ((initialWork.value - workLeft.value) / initialWork.value) * 100;
+    if (!task.value) return 0;
+    return (
+      ((task.value.initialWork - task.value.workLeft) /
+        task.value.initialWork) *
+      100
+    );
   });
 
   function doTaskWork() {
-    if (workLeft.value > 0) {
-      workLeft.value--;
+    if (task.value.workLeft > 0) {
+      task.value.workLeft--;
     } else {
-      taskOnComplete.value();
+      task.value.onComplete();
       resetTask();
     }
   }
 
   function resetTask() {
     console.log("resetting task");
-    taskName.value = null;
-    workLeft.value = 0;
-    initialWork.value = 0;
-    taskOnComplete.value = null;
-    taskOnCancel.value = null;
+    task.value = null;
     currentInterval.value = clearInterval(currentInterval.value);
   }
 
-  function setTask(newTask) {
-    console.log("setTask", newTask);
-    console.log("hello?");
-    const name = newTask.name;
-    const work = newTask.work;
-    const onComplete = newTask.onComplete;
-    const onCancel = newTask.onCancel;
-    taskName.value = name;
-    initialWork.value = work;
-    workLeft.value = work;
-    taskOnComplete.value = onComplete;
-    taskOnCancel.value = onCancel;
-    currentInterval.value = setInterval(doTaskWork, 50);
-    console.log("success", name, work, onComplete, onCancel);
+  function taskName() {
+    if (task.value) {
+      return task.value.name;
+    } else {
+      return null;
+    }
   }
 
-  return { taskName, workLeft, setTask, percentComplete };
+  function setTask(newTask) {
+    if (task.value) {
+      // Cancel the current task
+      task.value.onCancel();
+      resetTask();
+    }
+    const { name, work, onComplete, onCancel } = newTask;
+    task.value = {
+      name,
+      initialWork: work,
+      workLeft: work,
+      onComplete,
+      onCancel,
+    };
+    currentInterval.value = setInterval(doTaskWork, 50);
+  }
+
+  return { setTask, taskName, percentComplete };
 });
