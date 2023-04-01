@@ -2,9 +2,29 @@
 import { ref } from "vue";
 import TaskInfo from "./TaskInfo.vue";
 import { useScienceStore } from "@/stores/ScienceStore";
+import { useTaskStore } from "@/stores/TaskStore";
+
+const science = useScienceStore();
+const task = useTaskStore();
+const disableStudyKnowledge = ref(false);
 
 const selectedTab = ref("research");
-const science = useScienceStore();
+
+const onStudyKnowledge = () => {
+  task.setTask({
+    name: "Studying Data",
+    work: 100,
+    onComplete: () => {
+      console.log("Studied Data");
+      science.convertDataToKnowledge();
+      disableStudyKnowledge.value = false;
+    },
+    onCancel: () => {
+      console.log("Study Data Cancelled");
+    },
+  });
+  disableStudyKnowledge.value = true;
+};
 </script>
 
 <template>
@@ -22,7 +42,11 @@ const science = useScienceStore();
       <v-window v-model="selectedTab">
         <v-window-item value="research">
           <h1>Notebook</h1>
-          <div>Data: {{ science.data }}</div>
+          <h4>Data: {{ science.data }}</h4>
+          <h4>Knowlege: {{ science.knowledge }}</h4>
+          <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
+            >Study Data</v-btn
+          >
         </v-window-item>
       </v-window>
     </div>
