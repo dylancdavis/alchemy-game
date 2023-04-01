@@ -7,10 +7,9 @@ const task = useTaskStore();
 <template>
   <v-sheet bg-color="#888">
     <h2>{{ task.taskName ?? "Idle" }}</h2>
-    <h3 v-if="task.taskName">{{ `Work Left: ${task.workLeft}` }}</h3>
     <v-progress-linear
       height="10"
-      color="black"
+      color="info"
       rounded
       :model-value="task.percentComplete"
     />
