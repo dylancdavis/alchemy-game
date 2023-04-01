@@ -5,7 +5,7 @@ import { useCoresStore } from "../stores/CoreStore";
 
 const core = useCoresStore();
 
-const props = defineProps(["innerSize", "outerSize", "selectCore"]);
+const props = defineProps(["selectCore"]);
 
 const ESSENCE_LIMIT = 1000;
 const MAX_DIAMETER = 512;

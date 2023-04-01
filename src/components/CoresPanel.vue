@@ -9,15 +9,18 @@ const core = useCoresStore();
 const task = useTaskStore();
 const science = useScienceStore();
 
+console.log(science);
+
 const selectedCore = ref(null);
 const selectedTab = ref("cores");
 
 const onGatherData = () => {
+  console.log("onGatherData triggered");
   task.setTask({
     name: "Gathering Data",
     work: 100,
     callback: () => {
-      science.incrementDataBy(5);
+      console.log("Gathered Data");
     },
   });
 };
@@ -49,30 +52,15 @@ const expandCore = () => {
         <v-container v-if="selectedCore === null">No Core Selected</v-container>
         <v-container v-if="selectedCore === 'true'">
           <h1>Essence Core</h1>
-          <v-btn
-            :ripple="false"
-            class="gather"
-            @click="onGatherData"
-            :disabled="disableCollectData"
+          <v-btn :ripple="false" class="gather" @click="onGatherData"
             >Gather Data</v-btn
           >
-          <v-btn :ripple="false" @click="expandCore" :disabled="disableExpand"
-            >Expand</v-btn
-          >
-          <v-btn
-            :ripple="false"
-            @click="contractCore"
-            :disabled="disableContract"
-            v-show="showContract"
+          <v-btn :ripple="false" @click="expandCore">Expand</v-btn>
+          <v-btn :ripple="false" @click="contractCore" v-show="showContract"
             >Contract</v-btn
           >
         </v-container>
-        <CoresDiagram
-          @click="selectedCore = null"
-          :outerSize="outerSize"
-          :innerSize="innerSize"
-          :selectCore="selectCore"
-        />
+        <CoresDiagram @click="selectedCore = null" :selectCore="selectCore" />
       </v-window-item>
     </v-window>
   </v-sheet>
