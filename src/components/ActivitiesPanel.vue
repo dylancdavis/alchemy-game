@@ -57,6 +57,7 @@ const onStudyKnowledge = () => {
           <div>
             <h1>Shop (tentative name)</h1>
             <v-btn
+              v-if="!science.manipulation"
               @click="science.unlockManipulation()"
               :disabled="science.knowledge < 5"
               >Theory: Manipulation Methods (5 knowledge)</v-btn

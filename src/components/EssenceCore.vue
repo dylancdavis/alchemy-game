@@ -1,9 +1,7 @@
 <script setup>
-import { defineProps, computed, ref } from "vue";
+import { defineProps, computed } from "vue";
 
 const props = defineProps(["outerSize", "innerSize", "selectCore"]);
-
-const isSelected = ref(false);
 
 const outerStyle = computed(() => {
   return {
@@ -21,17 +19,11 @@ const innerStyle = computed(() => {
 
 const onSelect = () => {
   props.selectCore("true");
-  isSelected.value = true;
 };
 </script>
 
 <template>
-  <div
-    id="true-core"
-    :style="outerStyle"
-    @click.stop="onSelect"
-    :class="{ selected: isSelected }"
-  >
+  <div id="true-core" :style="outerStyle" @click.stop="onSelect">
     <div id="true-core-inner" :style="innerStyle">
       <img src="../assets/svg/swirl.svg" />
     </div>

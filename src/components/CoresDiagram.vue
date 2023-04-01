@@ -5,7 +5,7 @@ import { useCoresStore } from "../stores/CoreStore";
 
 const core = useCoresStore();
 
-const props = defineProps(["selectCore"]);
+const props = defineProps(["selectCore", "selectedCore"]);
 
 const ESSENCE_LIMIT = 1000;
 const MAX_DIAMETER = 512;
@@ -26,6 +26,7 @@ const innerSize = computed(() => {
       :innerSize="innerSize"
       :outerSize="outerSize"
       :selectCore="props.selectCore"
+      :class="{ selected: props.selectedCore === 'true' }"
     />
   </v-sheet>
 </template>

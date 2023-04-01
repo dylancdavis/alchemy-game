@@ -81,7 +81,11 @@ const expandCore = () => {
             >Contract</v-btn
           >
         </v-container>
-        <CoresDiagram @click="selectedCore = null" :selectCore="selectCore" />
+        <CoresDiagram
+          @click="selectedCore = null"
+          :selectCore="selectCore"
+          :selectedCore="selectedCore"
+        />
       </v-window-item>
     </v-window>
   </v-sheet>
@@ -96,5 +100,8 @@ const expandCore = () => {
 .v-window-item {
   display: flex;
   flex-direction: column;
+}
+
+.selected {
 }
 </style>
