@@ -1,13 +1,19 @@
 <script setup>
 import { ref } from "vue";
 import CoresDiagram from "./CoresDiagram.vue";
+import { useCoresStore } from "@/stores/CoreStore";
 
 const selectedCore = ref(null);
-
 const selectedTab = ref("cores");
+
+const core = useCoresStore();
 
 const selectCore = (name) => {
   selectedCore.value = name;
+};
+
+const expandCore = () => {
+  core.incrementEssenceBy(4);
 };
 </script>
 
