@@ -1,15 +1,20 @@
 <script setup>
+import { computed } from "vue";
 import { useTaskStore } from "../stores/TaskStore";
 
 const task = useTaskStore();
+
+const taskColor = computed(() => {
+  return task.color() ?? "#000";
+});
 </script>
 
 <template>
   <v-sheet bg-color="#888">
-    <h2>{{ task.taskName() ?? "Idle" }}</h2>
+    <h2>{{ task.name() ?? "Idle" }}</h2>
     <v-progress-linear
       height="10"
-      color="info"
+      :color="taskColor"
       rounded
       :model-value="task.percentComplete"
     />

@@ -53,11 +53,12 @@ export const useTaskStore = defineStore("TaskStore", () => {
       task.value.onCancel();
       resetTask();
     }
-    const { name, work, onComplete, onCancel } = newTask;
+    const { name, work, color, onComplete, onCancel } = newTask;
     task.value = {
       name,
       initialWork: work,
       workLeft: work,
+      color,
       onComplete,
       onCancel,
     };

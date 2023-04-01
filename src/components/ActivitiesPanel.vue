@@ -18,6 +18,7 @@ const onStudyKnowledge = () => {
   task.setTask({
     name: "Studying Data",
     work: 40,
+    color: "primary",
     onComplete: () => {
       console.log("Studied Data");
       science.convertDataToKnowledge();
@@ -45,12 +46,22 @@ const onStudyKnowledge = () => {
       </v-tabs>
       <v-window v-model="selectedTab">
         <v-window-item value="research">
-          <h1>Notebook</h1>
-          <h4>Data: {{ science.data }}</h4>
-          <h4>Knowlege: {{ science.knowledge }}</h4>
-          <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
-            >Study Data</v-btn
-          >
+          <div>
+            <h1>Notebook</h1>
+            <h4>Data: {{ science.data }}</h4>
+            <h4>Knowlege: {{ science.knowledge }}</h4>
+            <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
+              >Study Data</v-btn
+            >
+          </div>
+          <div>
+            <h1>Shop (tentative name)</h1>
+            <v-btn
+              @click="science.unlockManipulation()"
+              :disabled="science.knowledge < 5"
+              >Theory: Manipulation Methods (5 knowledge)</v-btn
+            >
+          </div>
         </v-window-item>
       </v-window>
     </div>

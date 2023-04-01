@@ -22,6 +22,7 @@ const onGatherData = () => {
   task.setTask({
     name: "Gathering Data",
     work: 100,
+    color: "info",
     onComplete: () => {
       console.log("Gathered Data");
       science.incrementDataBy(5);
@@ -67,8 +68,16 @@ const expandCore = () => {
             :disabled="disableGatherData"
             >Gather Data</v-btn
           >
-          <v-btn :ripple="false" @click="expandCore">Expand</v-btn>
-          <v-btn :ripple="false" @click="contractCore" v-show="showContract"
+          <v-btn
+            :ripple="false"
+            @click="expandCore"
+            v-show="science.manipulation"
+            >Expand</v-btn
+          >
+          <v-btn
+            :ripple="false"
+            @click="contractCore"
+            v-show="science.manipulation"
             >Contract</v-btn
           >
         </v-container>
