@@ -7,8 +7,9 @@ import { ref } from "vue";
 export const useScienceStore = defineStore("ScienceStore", () => {
   const data = ref(0);
   const knowledge = ref(0);
-  function incrementData() {
-    data.value++;
+
+  function incrementDataBy(amt) {
+    data.value += amt;
   }
   function convertDataToKnowledge() {
     if (data.value > 0) {
@@ -16,5 +17,5 @@ export const useScienceStore = defineStore("ScienceStore", () => {
       knowledge.value++;
     }
   }
-  return { data, knowledge, incrementData, convertDataToKnowledge };
+  return { data, knowledge, incrementDataBy, convertDataToKnowledge };
 });

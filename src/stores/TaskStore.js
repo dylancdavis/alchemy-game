@@ -7,24 +7,20 @@ export const useTaskStore = defineStore("TaskStore", () => {
   const taskName = ref(null);
   const workLeft = ref(0);
   const initialWork = ref(0);
-  const taskCallback = ref(null);
+  const taskOnComplete = ref(null);
+  const taskOnCancel = ref(null);
   const currentInterval = ref(null);
 
   const percentComplete = computed(() => {
+    if (initialWork.value === 0) return 0;
     return ((initialWork.value - workLeft.value) / initialWork.value) * 100;
   });
 
   function doTaskWork() {
-    console.log(
-      "doing task work",
-      taskName.value,
-      workLeft.value,
-      percentComplete.value
-    );
     if (workLeft.value > 0) {
       workLeft.value--;
     } else {
-      taskCallback.value();
+      taskOnComplete.value();
       resetTask();
     }
   }
@@ -34,7 +30,8 @@ export const useTaskStore = defineStore("TaskStore", () => {
     taskName.value = null;
     workLeft.value = 0;
     initialWork.value = 0;
-    taskCallback.value = null;
+    taskOnComplete.value = null;
+    taskOnCancel.value = null;
     currentInterval.value = clearInterval(currentInterval.value);
   }
 
@@ -43,13 +40,15 @@ export const useTaskStore = defineStore("TaskStore", () => {
     console.log("hello?");
     const name = newTask.name;
     const work = newTask.work;
-    const callback = newTask.callback;
+    const onComplete = newTask.onComplete;
+    const onCancel = newTask.onCancel;
     taskName.value = name;
     initialWork.value = work;
     workLeft.value = work;
-    taskCallback.value = callback;
+    taskOnComplete.value = onComplete;
+    taskOnCancel.value = onCancel;
     currentInterval.value = setInterval(doTaskWork, 50);
-    console.log("success", name, work, callback);
+    console.log("success", name, work, onComplete, onCancel);
   }
 
   return { taskName, workLeft, setTask, percentComplete };

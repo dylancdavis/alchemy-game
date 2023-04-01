@@ -14,13 +14,21 @@ console.log(science);
 const selectedCore = ref(null);
 const selectedTab = ref("cores");
 
+const disableGatherData = ref(false);
+
 const onGatherData = () => {
   console.log("onGatherData triggered");
+  disableGatherData.value = true;
   task.setTask({
     name: "Gathering Data",
     work: 100,
-    callback: () => {
+    onComplete: () => {
       console.log("Gathered Data");
+      science.incrementDataBy(5);
+      disableGatherData.value = false;
+    },
+    onCancel: () => {
+      console.log("Gather Data Cancelled");
     },
   });
 };
@@ -52,7 +60,11 @@ const expandCore = () => {
         <v-container v-if="selectedCore === null">No Core Selected</v-container>
         <v-container v-if="selectedCore === 'true'">
           <h1>Essence Core</h1>
-          <v-btn :ripple="false" class="gather" @click="onGatherData"
+          <v-btn
+            :ripple="false"
+            class="gather"
+            @click="onGatherData"
+            :disabled="disableGatherData"
             >Gather Data</v-btn
           >
           <v-btn :ripple="false" @click="expandCore">Expand</v-btn>
