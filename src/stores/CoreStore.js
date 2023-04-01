@@ -3,7 +3,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const useCoresStore = defineStore("CoreStore", () => {
+export const useCoresStore = defineStore("CoreStore", () => {
   const essence = ref(0);
   const essenceMax = ref(10);
 
@@ -20,5 +20,3 @@ const useCoresStore = defineStore("CoreStore", () => {
 
   return { essence, essenceMax, incrementEssenceBy, incrementEssenceMaxBy };
 });
-
-export const trueCore = useCoresStore();

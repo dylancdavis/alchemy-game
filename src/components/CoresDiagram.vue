@@ -1,13 +1,11 @@
 <script setup>
-import { computed, defineProps, reactive } from "vue";
+import { computed, defineProps } from "vue";
 import EssenceCore from "./EssenceCore.vue";
-const props = defineProps(["innerSize", "outerSize", "selectCore"]);
+import { useCoresStore } from "../stores/CoreStore";
 
-const core = reactive({
-  essence: 0,
-  essenceMax: 10,
-  incrementAmt: 1,
-});
+const core = useCoresStore();
+
+const props = defineProps(["innerSize", "outerSize", "selectCore"]);
 
 const ESSENCE_LIMIT = 1000;
 const MAX_DIAMETER = 512;
