@@ -2,11 +2,25 @@
 import { ref } from "vue";
 import CoresDiagram from "./CoresDiagram.vue";
 import { useCoresStore } from "@/stores/CoreStore";
+import { useTaskStore } from "@/stores/TaskStore";
+import { useScienceStore } from "@/stores/ScienceStore";
+
+const core = useCoresStore();
+const task = useTaskStore();
+const science = useScienceStore();
 
 const selectedCore = ref(null);
 const selectedTab = ref("cores");
 
-const core = useCoresStore();
+const onGatherData = () => {
+  task.setTask({
+    name: "Gathering Data",
+    work: 100,
+    callback: () => {
+      science.incrementDataBy(5);
+    },
+  });
+};
 
 const selectCore = (name) => {
   selectedCore.value = name;
@@ -38,7 +52,7 @@ const expandCore = () => {
           <v-btn
             :ripple="false"
             class="gather"
-            @click="data++"
+            @click="onGatherData"
             :disabled="disableCollectData"
             >Gather Data</v-btn
           >
