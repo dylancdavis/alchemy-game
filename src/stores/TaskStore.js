@@ -31,9 +31,17 @@ export const useTaskStore = defineStore("TaskStore", () => {
     currentInterval.value = clearInterval(currentInterval.value);
   }
 
-  function taskName() {
+  function name() {
     if (task.value) {
       return task.value.name;
+    } else {
+      return null;
+    }
+  }
+
+  function color() {
+    if (task.value) {
+      return task.value.color;
     } else {
       return null;
     }
@@ -56,5 +64,5 @@ export const useTaskStore = defineStore("TaskStore", () => {
     currentInterval.value = setInterval(doTaskWork, 50);
   }
 
-  return { setTask, taskName, percentComplete };
+  return { setTask, name, color, percentComplete };
 });

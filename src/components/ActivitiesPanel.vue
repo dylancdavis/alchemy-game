@@ -1,12 +1,16 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import TaskInfo from "./TaskInfo.vue";
 import { useScienceStore } from "@/stores/ScienceStore";
 import { useTaskStore } from "@/stores/TaskStore";
 
 const science = useScienceStore();
 const task = useTaskStore();
-const disableStudyKnowledge = ref(false);
+const studyKnowledgeRunning = ref(false);
+
+const disableStudyKnowledge = computed(() => {
+  return studyKnowledgeRunning.value || science.data <= 0;
+});
 
 const selectedTab = ref("research");
 
@@ -17,13 +21,13 @@ const onStudyKnowledge = () => {
     onComplete: () => {
       console.log("Studied Data");
       science.convertDataToKnowledge();
-      disableStudyKnowledge.value = false;
+      studyKnowledgeRunning.value = false;
     },
     onCancel: () => {
       console.log("Study Data Cancelled");
     },
   });
-  disableStudyKnowledge.value = true;
+  studyKnowledgeRunning.value = true;
 };
 </script>
 
