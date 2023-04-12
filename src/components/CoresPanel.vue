@@ -61,25 +61,27 @@ const expandCore = () => {
         <v-container v-if="selectedCore === null">No Core Selected</v-container>
         <v-container v-if="selectedCore === 'true'">
           <h1>Essence Core</h1>
-          <v-btn
-            :ripple="false"
-            class="gather"
-            @click="onGatherData"
-            :disabled="disableGatherData"
-            >Gather Data</v-btn
-          >
-          <v-btn
-            :ripple="false"
-            @click="expandCore"
-            v-show="science.manipulation"
-            >Expand</v-btn
-          >
-          <v-btn
-            :ripple="false"
-            @click="contractCore"
-            v-show="science.manipulation"
-            >Contract</v-btn
-          >
+          <div class="button-box">
+            <v-btn
+              :ripple="false"
+              class="gather"
+              @click="onGatherData"
+              :disabled="disableGatherData"
+              >Gather Data</v-btn
+            >
+            <v-btn
+              :ripple="false"
+              @click="expandCore"
+              v-show="science.manipulation"
+              >Expand</v-btn
+            >
+            <v-btn
+              :ripple="false"
+              @click="contractCore"
+              v-show="science.manipulation"
+              >Contract</v-btn
+            >
+          </div>
         </v-container>
         <CoresDiagram
           @click="selectedCore = null"
@@ -95,6 +97,20 @@ const expandCore = () => {
 .panel {
   display: flex;
   flex-direction: column;
+}
+
+.v-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-box {
+  display: flex;
+  gap: 1em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.355);
+  border: 2px solid black;
 }
 
 .v-window-item {
