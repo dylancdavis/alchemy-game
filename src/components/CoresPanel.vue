@@ -1,45 +1,13 @@
 <script setup>
 import { ref } from "vue";
 import CoresDiagram from "./CoresDiagram.vue";
-import { useCoresStore } from "@/stores/CoreStore";
-import { useTaskStore } from "@/stores/TaskStore";
-import { useScienceStore } from "@/stores/ScienceStore";
-
-const core = useCoresStore();
-const task = useTaskStore();
-const science = useScienceStore();
-
-console.log(science);
+import SelectedCoreDisplay from "./SelectedCoreDisplay.vue";
 
 const selectedCore = ref(null);
 const selectedTab = ref("cores");
 
-const disableGatherData = ref(false);
-
-const onGatherData = () => {
-  console.log("onGatherData triggered");
-  disableGatherData.value = true;
-  task.setTask({
-    name: "Gathering Data",
-    work: 100,
-    color: "info",
-    onComplete: () => {
-      console.log("Gathered Data");
-      science.incrementDataBy(5);
-      disableGatherData.value = false;
-    },
-    onCancel: () => {
-      console.log("Gather Data Cancelled");
-    },
-  });
-};
-
 const selectCore = (name) => {
   selectedCore.value = name;
-};
-
-const expandCore = () => {
-  core.incrementEssenceBy(4);
 };
 </script>
 
@@ -58,33 +26,7 @@ const expandCore = () => {
     </div>
     <v-window v-model="selectedTab" class="fill-height">
       <v-window-item value="research" class="fill-height">
-        <v-container v-if="selectedCore === null">No Core Selected</v-container>
-        <v-container v-if="selectedCore === 'true'">
-          <h1>Essence Core</h1>
-          <div class="button-box">
-            <v-btn
-              :ripple="false"
-              class="gradient-button purple"
-              @click="onGatherData"
-              :disabled="disableGatherData"
-              >Gather Data</v-btn
-            >
-            <v-btn
-              :ripple="false"
-              class="gradient-button blue"
-              @click="expandCore"
-              v-show="science.manipulation"
-              >Expand</v-btn
-            >
-            <v-btn
-              :ripple="false"
-              class="gradient-button red"
-              @click="contractCore"
-              v-show="science.manipulation"
-              >Contract</v-btn
-            >
-          </div>
-        </v-container>
+        <SelectedCoreDisplay :selectedCore="selectedCore" />
         <CoresDiagram
           @click="selectedCore = null"
           :selectCore="selectCore"
