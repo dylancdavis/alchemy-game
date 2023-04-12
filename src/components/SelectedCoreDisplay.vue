@@ -89,6 +89,9 @@ const contractCore = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 3px 3px 0px rgb(182, 182, 182);
 }
 
 .button-box {
