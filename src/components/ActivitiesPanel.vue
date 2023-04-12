@@ -26,6 +26,7 @@ const onStudyKnowledge = () => {
     },
     onCancel: () => {
       console.log("Study Data Cancelled");
+      studyKnowledgeRunning.value = false;
     },
   });
   studyKnowledgeRunning.value = true;

@@ -27,6 +27,7 @@ const onGatherData = () => {
     },
     onCancel: () => {
       console.log("Gather Data Cancelled");
+      disableGatherData.value = false;
     },
   });
 };
