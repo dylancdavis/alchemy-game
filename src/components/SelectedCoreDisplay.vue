@@ -46,6 +46,7 @@ const expandCore = () => {
     },
     onCancel: () => {
       console.log("Expand Core Cancelled");
+      disableExpandCore.value = false;
     },
   });
 };
@@ -61,21 +62,19 @@ const contractCore = () => {
     <h1>Essence Core</h1>
     <div class="button-box">
       <v-btn
-        :ripple="false"
         class="gradient-button purple"
         @click="onGatherData"
         :disabled="disableGatherData"
         >Gather Data</v-btn
       >
       <v-btn
-        :ripple="false"
         class="gradient-button blue"
         @click="expandCore"
+        :disabled="disableExpandCore"
         v-show="science.manipulation"
         >Expand</v-btn
       >
       <v-btn
-        :ripple="false"
         class="gradient-button red"
         @click="contractCore"
         v-show="science.manipulation"
