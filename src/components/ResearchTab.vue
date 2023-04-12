@@ -49,16 +49,28 @@ const onResearchManipulation = () => {
 
 <template>
   <v-window-item value="research">
+    <v-table>
+      <tbody>
+        <tr>
+          <td><h2>Data</h2></td>
+          <td>
+            <h2>{{ science.data }}</h2>
+          </td>
+          <td>
+            <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
+              >Study Data</v-btn
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><h2>Knowledge</h2></td>
+          <td>
+            <h2>{{ science.knowledge }}</h2>
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
     <div>
-      <h1>Notebook</h1>
-      <h4>Data: {{ science.data }}</h4>
-      <h4>Knowlege: {{ science.knowledge }}</h4>
-      <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
-        >Study Data</v-btn
-      >
-    </div>
-    <div>
-      <h1>Shop (tentative name)</h1>
       <v-btn
         v-if="!science.manipulation"
         @click="onResearchManipulation"
