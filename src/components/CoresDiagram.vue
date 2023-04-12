@@ -36,7 +36,6 @@ const innerSize = computed(() => {
   display: grid;
   place-items: center;
   background-color: #ddd;
-  padding: 64px;
 }
 
 .v-sheet {
