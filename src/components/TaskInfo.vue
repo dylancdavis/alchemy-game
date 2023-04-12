@@ -17,6 +17,7 @@ const taskColor = computed(() => {
       :color="taskColor"
       rounded
       :model-value="task.percentComplete"
+      :class="task.name() ? '' : 'no-transition'"
     />
   </v-sheet>
 </template>
@@ -30,5 +31,9 @@ const taskColor = computed(() => {
 
 h2 {
   margin-bottom: 8px;
+}
+
+.no-transition {
+  transition: none;
 }
 </style>
