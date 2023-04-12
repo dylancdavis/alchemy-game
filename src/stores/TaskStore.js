@@ -50,8 +50,7 @@ export const useTaskStore = defineStore("TaskStore", () => {
   function setTask(newTask) {
     if (task.value) {
       // Cancel the current task
-      task.value.onCancel();
-      resetTask();
+      cancelTask();
     }
     const { name, work, color, onComplete, onCancel } = newTask;
     task.value = {
@@ -65,5 +64,10 @@ export const useTaskStore = defineStore("TaskStore", () => {
     currentInterval.value = setInterval(doTaskWork, 50);
   }
 
-  return { setTask, name, color, percentComplete };
+  function cancelTask() {
+    task.value.onCancel();
+    resetTask();
+  }
+
+  return { setTask, cancelTask, name, color, percentComplete };
 });

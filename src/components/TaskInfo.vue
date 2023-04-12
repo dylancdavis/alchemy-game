@@ -11,7 +11,10 @@ const taskColor = computed(() => {
 
 <template>
   <v-sheet bg-color="#888">
-    <h2>{{ task.name() ?? "Idle" }}</h2>
+    <div class="task-display">
+      <h2>{{ task.name() ?? "Idle" }}</h2>
+      <v-btn v-if="task.name()" @click="task.cancelTask">X</v-btn>
+    </div>
     <v-progress-linear
       height="10"
       :color="taskColor"
@@ -27,6 +30,17 @@ const taskColor = computed(() => {
   width: 100%;
   height: 100%;
   padding: 24px;
+}
+
+.task-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.v-btn {
+  font-weight: bold;
+  background-color: rgb(255, 218, 218);
 }
 
 h2 {
