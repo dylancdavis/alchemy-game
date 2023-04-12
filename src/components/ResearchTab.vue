@@ -34,7 +34,7 @@ const onResearchManipulation = () => {
   console.log("onResearchManipulation triggered");
   task.setTask({
     name: "Researching Manipulation Methods",
-    work: 500,
+    work: 50,
     color: "primary",
     onComplete: () => {
       console.log("Researched Manipulation Methods");

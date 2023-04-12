@@ -17,6 +17,12 @@ const innerStyle = computed(() => {
   };
 });
 
+const imgStyle = computed(() => {
+  return {
+    filter: `blur(${props.innerSize / 15}px)`,
+  };
+});
+
 const onSelect = () => {
   props.selectCore("true");
 };
@@ -25,7 +31,7 @@ const onSelect = () => {
 <template>
   <div id="true-core" :style="outerStyle" @click.stop="onSelect">
     <div id="true-core-inner" :style="innerStyle">
-      <img src="../assets/svg/swirl.svg" />
+      <img :style="imgStyle" src="../assets/svg/swirl.svg" />
     </div>
   </div>
 </template>
@@ -72,6 +78,5 @@ const onSelect = () => {
   transition: all 1s ease;
   width: 100%;
   opacity: 0.6;
-  filter: blur(10px);
 }
 </style>
