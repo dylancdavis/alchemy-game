@@ -8,6 +8,7 @@ export const useScienceStore = defineStore("ScienceStore", () => {
   const data = ref(0);
   const knowledge = ref(5);
   const manipulation = ref(false);
+  const quantification = ref(false);
 
   function incrementDataBy(amt) {
     data.value += amt;
@@ -22,6 +23,12 @@ export const useScienceStore = defineStore("ScienceStore", () => {
     console.log("unlocking manipulation");
     manipulation.value = true;
   }
+
+  function unlockQuantification() {
+    console.log("unlocking quantification");
+    quantification.value = true;
+  }
+
   return {
     data,
     knowledge,
@@ -29,5 +36,7 @@ export const useScienceStore = defineStore("ScienceStore", () => {
     convertDataToKnowledge,
     manipulation,
     unlockManipulation,
+    unlockQuantification,
+    quantification,
   };
 });

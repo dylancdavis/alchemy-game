@@ -60,7 +60,12 @@ const contractCore = () => {
 <template>
   <v-container v-if="props.selectedCore === null">No Core Selected</v-container>
   <v-container v-if="props.selectedCore === 'true'">
-    <h1>Essence Core</h1>
+    <div class="flex">
+      <h1>Essence Core</h1>
+      <h2 v-if="science.quantification">
+        ({{ core.essence }}/{{ core.essenceMax }})
+      </h2>
+    </div>
     <div class="button-box">
       <v-btn
         class="gradient-button purple"
@@ -86,6 +91,16 @@ const contractCore = () => {
 </template>
 
 <style scoped>
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: medium;
+}
 .v-container {
   display: flex;
   align-items: center;
