@@ -14,9 +14,10 @@ export const useCoresStore = defineStore("CoreStore", () => {
     }
   }
 
-  function incrementEssenceMaxBy(amt) {
-    essenceMax.value += amt;
+  function contractCore() {
+    essenceMax.value += essence.value * 5;
+    essence.value = 0;
   }
 
-  return { essence, essenceMax, incrementEssenceBy, incrementEssenceMaxBy };
+  return { essence, essenceMax, incrementEssenceBy, contractCore };
 });

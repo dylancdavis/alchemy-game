@@ -6,7 +6,7 @@ import { ref } from "vue";
 
 export const useScienceStore = defineStore("ScienceStore", () => {
   const data = ref(0);
-  const knowledge = ref(4);
+  const knowledge = ref(5);
   const manipulation = ref(false);
 
   function incrementDataBy(amt) {

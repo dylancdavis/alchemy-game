@@ -41,8 +41,7 @@ const onSelect = () => {
   border-radius: 100%;
   border: 2px solid black;
   background-color: rgb(32, 32, 32);
-  transition: all 0.5s ease-in-out;
-  transition: outline 0s;
+  transition: all 0.5s ease-in-out, outline 0s;
   overflow: hidden;
   position: relative;
   display: grid;
@@ -53,7 +52,7 @@ const onSelect = () => {
 #true-core-inner {
   background-color: aliceblue;
   border-radius: 100%;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
   box-shadow: 0px 0px 4px 2px aliceblue;
   display: grid;
   position: absolute;

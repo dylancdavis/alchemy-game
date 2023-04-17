@@ -37,7 +37,7 @@ const expandCore = () => {
   disableExpandCore.value = true;
   task.setTask({
     name: "Expanding Core",
-    work: 100,
+    work: 20,
     color: "info",
     onComplete: () => {
       console.log("Expanded Core");
@@ -53,6 +53,7 @@ const expandCore = () => {
 
 const contractCore = () => {
   console.log("triggered contractCore");
+  core.contractCore();
 };
 </script>
 
