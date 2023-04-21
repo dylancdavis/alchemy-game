@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import TaskInfo from "./TaskInfo.vue";
 import ResearchTab from "./ResearchTab.vue";
+import JournalTab from "./JournalTab.vue";
 
 const selectedTab = ref("research");
 </script>
@@ -17,9 +18,15 @@ const selectedTab = ref("research");
         color="white"
       >
         <v-tab value="research" v-ripple="false">Research</v-tab>
+        <v-tab value="journal" v-ripple="false">Journal</v-tab>
       </v-tabs>
       <v-window v-model="selectedTab">
-        <ResearchTab />
+        <v-window-item value="research">
+          <ResearchTab />
+        </v-window-item>
+        <v-window-item value="journal">
+          <JournalTab />
+        </v-window-item>
       </v-window>
     </div>
     <div>

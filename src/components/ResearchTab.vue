@@ -64,48 +64,42 @@ const onResearchQuantification = () => {
 </script>
 
 <template>
-  <v-window-item value="research">
-    <v-table>
-      <tbody>
-        <tr>
-          <td><h2>Data</h2></td>
-          <td>
-            <h2>{{ science.data }}</h2>
-          </td>
-          <td>
-            <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
-              >Study Data</v-btn
-            >
-          </td>
-        </tr>
-        <tr>
-          <td><h2>Knowledge</h2></td>
-          <td>
-            <h2>{{ science.knowledge }}</h2>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
-    <v-divider class="border-opacity-75" />
-    <div>
-      <v-btn
-        v-if="!science.manipulation"
-        @click="onResearchManipulation"
-        :disabled="science.knowledge < 5"
-        >Theory: Manipulation Methods (5 knowledge)</v-btn
-      >
-      <v-btn
-        v-if="!science.quantification"
-        @click="onResearchQuantification"
-        :disabled="science.knowledge < 2"
-        >Theory: Quantification Methods (2 knowledge)</v-btn
-      >
-    </div>
-  </v-window-item>
+  <v-table>
+    <tbody>
+      <tr>
+        <td><h2>Data</h2></td>
+        <td>
+          <h2>{{ science.data }}</h2>
+        </td>
+        <td>
+          <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
+            >Study Data</v-btn
+          >
+        </td>
+      </tr>
+      <tr>
+        <td><h2>Knowledge</h2></td>
+        <td>
+          <h2>{{ science.knowledge }}</h2>
+        </td>
+      </tr>
+    </tbody>
+  </v-table>
+  <v-divider class="border-opacity-75" />
+  <div>
+    <v-btn
+      v-if="!science.manipulation"
+      @click="onResearchManipulation"
+      :disabled="science.knowledge < 5"
+      >Theory: Manipulation Methods (5 knowledge)</v-btn
+    >
+    <v-btn
+      v-if="!science.quantification"
+      @click="onResearchQuantification"
+      :disabled="science.knowledge < 2"
+      >Theory: Quantification Methods (2 knowledge)</v-btn
+    >
+  </div>
 </template>
 
-<style scoped>
-.v-window-item {
-  padding: 24px;
-}
-</style>
+<style scoped></style>
