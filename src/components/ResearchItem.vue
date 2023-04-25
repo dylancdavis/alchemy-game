@@ -23,7 +23,7 @@ const props = defineProps([
     </v-expansion-panel-title>
     <v-expansion-panel-text>
       <h5>Cost: {{ cost }} Knowledge</h5>
-      <p>basic methods to interact with essence cores</p>
+      <p>{{ description }}</p>
       <v-btn @click="onClick" :disabled="disabled"> Research </v-btn>
     </v-expansion-panel-text>
   </v-expansion-panel>

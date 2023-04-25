@@ -88,7 +88,7 @@ const onResearchQuantification = () => {
   </v-table>
   <v-divider class="border-opacity-75" />
   <v-sheet class="fill-height theories">
-    <h3>Research</h3>
+    <h3>Theories</h3>
     <v-expansion-panels variant="accordion">
       <ResearchItem
         :visible="!science.manipulation"
@@ -114,7 +114,12 @@ const onResearchQuantification = () => {
 
 <style scoped>
 .theories {
+  border-bottom: 1px solid grey;
+}
+
+h3 {
   padding: 1em;
+  background-color: lavender;
 }
 
 .v-card {

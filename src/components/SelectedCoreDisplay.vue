@@ -41,7 +41,7 @@ const expandCore = () => {
     color: "info",
     onComplete: () => {
       console.log("Expanded Core");
-      core.incrementEssenceBy(4);
+      core.incrementEssenceBy(5);
       disableExpandCore.value = false;
     },
     onCancel: () => {
@@ -70,8 +70,14 @@ const contractCore = () => {
         class="gradient-button purple"
         @click="onGatherData"
         :disabled="disableGatherData"
-        >Gather Data</v-btn
       >
+        Gather Data
+        <v-tooltip activator="parent" location="top" open-delay="1000">
+          <div>Observe the core for a time, gathering data</div>
+          <div>Task Time: 2 Seconds</div>
+          <div>Reward: 5 Data</div>
+        </v-tooltip>
+      </v-btn>
       <v-btn
         class="gradient-button blue"
         @click="expandCore"
