@@ -1,11 +1,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useScienceStore } from "@/stores/ScienceStore";
-import { useTaskStore } from "@/stores/TaskStore";
+import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 import ResearchItem from "./ResearchItem.vue";
 
 const science = useScienceStore();
-const task = useTaskStore();
+const task = useTaskRunnerStore();
 const studyKnowledgeRunning = ref(false);
 
 // Only allow clickable button if task isn't running AND data exist

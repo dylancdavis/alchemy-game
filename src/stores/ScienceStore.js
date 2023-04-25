@@ -6,19 +6,21 @@ import { ref } from "vue";
 
 export const useScienceStore = defineStore("ScienceStore", () => {
   const data = ref(0);
-  const knowledge = ref(0);
+  const knowledge = ref(5);
   const manipulation = ref(false);
   const quantification = ref(false);
 
   function incrementDataBy(amt) {
     data.value += amt;
   }
+
   function convertDataToKnowledge() {
     if (data.value > 0) {
       data.value--;
       knowledge.value++;
     }
   }
+
   function unlockManipulation() {
     console.log("unlocking manipulation");
     manipulation.value = true;

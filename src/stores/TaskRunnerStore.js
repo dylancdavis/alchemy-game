@@ -3,7 +3,7 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
-export const useTaskStore = defineStore("TaskStore", () => {
+export const useTaskRunnerStore = defineStore("TaskRunnerStore", () => {
   const task = ref(null);
   const currentInterval = ref(null);
 
@@ -65,7 +65,7 @@ export const useTaskStore = defineStore("TaskStore", () => {
   }
 
   function cancelTask() {
-    task.value.onCancel();
+    if (task.value.onCancel) task.value.onCancel();
     resetTask();
   }
 

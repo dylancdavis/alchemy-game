@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from "vue";
-import { useTaskStore } from "../stores/TaskStore";
+import { useTaskRunnerStore } from "../stores/TaskRunnerStore";
 
-const task = useTaskStore();
+const task = useTaskRunnerStore();
 
 const taskColor = computed(() => {
   return task.color() ?? "#000";

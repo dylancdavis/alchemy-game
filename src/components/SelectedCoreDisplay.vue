@@ -1,12 +1,12 @@
 <script setup>
 import { ref, defineProps } from "vue";
 import { useCoresStore } from "@/stores/CoreStore";
-import { useTaskStore } from "@/stores/TaskStore";
+import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 import { useScienceStore } from "@/stores/ScienceStore";
 import TaskConstants from "../constants/Tasks";
 
 const core = useCoresStore();
-const task = useTaskStore();
+const task = useTaskRunnerStore();
 const science = useScienceStore();
 
 const props = defineProps(["selectedCore"]);
