@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useScienceStore } from "@/stores/ScienceStore";
 import { useTaskStore } from "@/stores/TaskStore";
+import ResearchItem from "./ResearchItem.vue";
 
 const science = useScienceStore();
 const task = useTaskStore();
@@ -88,24 +89,35 @@ const onResearchQuantification = () => {
   <v-divider class="border-opacity-75" />
   <v-sheet class="fill-height theories">
     <h3>Research</h3>
-    <v-btn
-      v-if="!science.manipulation"
-      @click="onResearchManipulation"
-      :disabled="science.knowledge < 5"
-    >
-      Theory: Manipulation Methods (5)
-    </v-btn>
-    <v-btn
-      v-if="!science.quantification"
-      @click="onResearchQuantification"
-      :disabled="science.knowledge < 2"
-      >Theory: Quantification Methods (2)</v-btn
-    >
+    <v-expansion-panels variant="accordion">
+      <ResearchItem
+        :visible="!science.manipulation"
+        name="Manipulation Methods"
+        chip="core theory"
+        cost="5"
+        description="basic methods to interact with essence cores"
+        :disabled="science.knowledge < 5"
+        :onClick="onResearchManipulation"
+      />
+      <ResearchItem
+        :visible="!science.quantification"
+        name="Quantification Methods"
+        chip="core theory"
+        cost="2"
+        description="determine quantities of essence within cores"
+        :disabled="science.knowledge < 2"
+        :onClick="onResearchQuantification"
+      />
+    </v-expansion-panels>
   </v-sheet>
 </template>
 
 <style scoped>
 .theories {
+  padding: 1em;
+}
+
+.v-card {
   padding: 1em;
 }
 </style>
