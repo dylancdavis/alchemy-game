@@ -58,7 +58,6 @@ const contractCore = () => {
 </script>
 
 <template>
-  <v-container v-if="props.selectedCore === null">No Core Selected</v-container>
   <v-container v-if="props.selectedCore === 'true'">
     <div class="flex">
       <h1>Essence Core</h1>

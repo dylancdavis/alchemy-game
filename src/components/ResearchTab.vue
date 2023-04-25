@@ -86,20 +86,26 @@ const onResearchQuantification = () => {
     </tbody>
   </v-table>
   <v-divider class="border-opacity-75" />
-  <div>
+  <v-sheet class="fill-height theories">
+    <h3>Research</h3>
     <v-btn
       v-if="!science.manipulation"
       @click="onResearchManipulation"
       :disabled="science.knowledge < 5"
-      >Theory: Manipulation Methods (5 knowledge)</v-btn
     >
+      Theory: Manipulation Methods (5)
+    </v-btn>
     <v-btn
       v-if="!science.quantification"
       @click="onResearchQuantification"
       :disabled="science.knowledge < 2"
-      >Theory: Quantification Methods (2 knowledge)</v-btn
+      >Theory: Quantification Methods (2)</v-btn
     >
-  </div>
+  </v-sheet>
 </template>
 
-<style scoped></style>
+<style scoped>
+.theories {
+  padding: 1em;
+}
+</style>
