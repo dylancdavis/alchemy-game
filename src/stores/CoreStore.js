@@ -6,6 +6,7 @@ import { ref } from "vue";
 export const useCoresStore = defineStore("CoreStore", () => {
   const essence = ref(0);
   const essenceMax = ref(10);
+  const essenceMaxLimit = 1000;
 
   function incrementEssenceBy(amt) {
     essence.value += amt;
@@ -16,6 +17,9 @@ export const useCoresStore = defineStore("CoreStore", () => {
 
   function contractCore() {
     essenceMax.value += essence.value * 5;
+    if (essenceMax.value > essenceMaxLimit) {
+      essenceMax.value = essenceMaxLimit;
+    }
     essence.value = 0;
   }
 

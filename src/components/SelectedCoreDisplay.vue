@@ -3,6 +3,7 @@ import { ref, defineProps } from "vue";
 import { useCoresStore } from "@/stores/CoreStore";
 import { useTaskStore } from "@/stores/TaskStore";
 import { useScienceStore } from "@/stores/ScienceStore";
+import TaskConstants from "../constants/Tasks";
 
 const core = useCoresStore();
 const task = useTaskStore();
@@ -17,9 +18,7 @@ const onGatherData = () => {
   console.log("onGatherData triggered");
   disableGatherData.value = true;
   task.setTask({
-    name: "Gathering Data",
-    work: 100,
-    color: "info",
+    ...TaskConstants.gatherData,
     onComplete: () => {
       console.log("Gathered Data");
       science.incrementDataBy(5);
@@ -36,9 +35,7 @@ const expandCore = () => {
   console.log("expandCore triggered");
   disableExpandCore.value = true;
   task.setTask({
-    name: "Expanding Core",
-    work: 20,
-    color: "info",
+    ...TaskConstants.expandCore,
     onComplete: () => {
       console.log("Expanded Core");
       core.incrementEssenceBy(5);
