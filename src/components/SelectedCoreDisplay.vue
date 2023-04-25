@@ -1,12 +1,10 @@
 <script setup>
 import { ref, defineProps } from "vue";
 import { useCoresStore } from "@/stores/CoreStore";
-import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 import { useScienceStore } from "@/stores/ScienceStore";
-import TaskConstants from "../constants/Tasks";
+import { doTask } from "../logic/TasksHandler";
 
 const core = useCoresStore();
-const task = useTaskRunnerStore();
 const science = useScienceStore();
 
 const props = defineProps(["selectedCore"]);
@@ -15,37 +13,11 @@ const disableGatherData = ref(false);
 const disableExpandCore = ref(false);
 
 const onGatherData = () => {
-  console.log("onGatherData triggered");
-  disableGatherData.value = true;
-  task.setTask({
-    ...TaskConstants.gatherData,
-    onComplete: () => {
-      console.log("Gathered Data");
-      science.incrementDataBy(5);
-      disableGatherData.value = false;
-    },
-    onCancel: () => {
-      console.log("Gather Data Cancelled");
-      disableGatherData.value = false;
-    },
-  });
+  doTask("gatherData");
 };
 
 const expandCore = () => {
-  console.log("expandCore triggered");
-  disableExpandCore.value = true;
-  task.setTask({
-    ...TaskConstants.expandCore,
-    onComplete: () => {
-      console.log("Expanded Core");
-      core.incrementEssenceBy(5);
-      disableExpandCore.value = false;
-    },
-    onCancel: () => {
-      console.log("Expand Core Cancelled");
-      disableExpandCore.value = false;
-    },
-  });
+  doTask("expandCore");
 };
 
 const contractCore = () => {

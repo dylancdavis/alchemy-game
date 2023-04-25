@@ -2,10 +2,6 @@ import { useScienceStore } from "@/stores/ScienceStore";
 import { useCoresStore } from "@/stores/CoreStore";
 import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 
-const science = useScienceStore();
-const core = useCoresStore();
-const taskRunner = useTaskRunnerStore();
-
 let tasks = {
   gatherData: {
     id: "gatherData",
@@ -13,6 +9,7 @@ let tasks = {
     work: 100,
     color: "primary",
     onComplete: () => {
+      const science = useScienceStore();
       science.incrementDataBy(5);
     },
   },
@@ -22,6 +19,7 @@ let tasks = {
     work: 20,
     color: "info",
     onComplete: () => {
+      const core = useCoresStore();
       core.incrementEssenceBy(5);
     },
   },
@@ -32,5 +30,6 @@ export const changeTaskWork = (taskName, newWorkVal) => {
 };
 
 export const doTask = (taskId) => {
+  const taskRunner = useTaskRunnerStore();
   taskRunner.setTask(tasks[taskId]);
 };
