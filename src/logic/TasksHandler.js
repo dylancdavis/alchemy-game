@@ -5,9 +5,11 @@ import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 let tasks = {
   gatherData: {
     id: "gatherData",
-    display: "Gathering Data",
+    display: {
+      name: "Gathering Data",
+      color: "primary",
+    },
     work: 100,
-    color: "primary",
     onComplete: () => {
       const science = useScienceStore();
       science.incrementDataBy(5);
@@ -15,9 +17,11 @@ let tasks = {
   },
   expandCore: {
     id: "expandCore",
-    display: "Expanding Core",
+    display: {
+      name: "Expanding Core",
+      color: "info",
+    },
     work: 20,
-    color: "info",
     onComplete: () => {
       const core = useCoresStore();
       core.incrementEssenceBy(5);

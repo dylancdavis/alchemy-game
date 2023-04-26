@@ -4,18 +4,24 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useTaskRunnerStore = defineStore("TaskRunnerStore", () => {
+  // State
   const task = ref(null);
   const currentInterval = ref(null);
 
+  // Getter Functions / Computed Properties
   const percentComplete = computed(() => {
-    if (!task.value) return 0;
-    return (
-      ((task.value.initialWork - task.value.workLeft) /
-        task.value.initialWork) *
-      100
-    );
+    return task.value
+      ? ((task.value.initialWork - task.value.workLeft) /
+          task.value.initialWork) *
+          100
+      : 0;
   });
 
+  const id = computed(() => (task.value ? task.value.id : null));
+  const name = computed(() => (task.value ? task.value.display.name : null));
+  const color = computed(() => (task.value ? task.value.display.color : null));
+
+  // Methods / Actions
   function doTaskWork() {
     if (task.value.workLeft > 0) {
       task.value.workLeft--;
@@ -31,33 +37,17 @@ export const useTaskRunnerStore = defineStore("TaskRunnerStore", () => {
     currentInterval.value = clearInterval(currentInterval.value);
   }
 
-  function name() {
-    if (task.value) {
-      return task.value.name;
-    } else {
-      return null;
-    }
-  }
-
-  function color() {
-    if (task.value) {
-      return task.value.color;
-    } else {
-      return null;
-    }
-  }
-
   function setTask(newTask) {
     if (task.value) {
       // Cancel the current task
       cancelTask();
     }
-    const { name, work, color, onComplete, onCancel } = newTask;
+    const { id, display, work, onComplete, onCancel } = newTask;
     task.value = {
-      name,
+      id,
+      display,
       initialWork: work,
       workLeft: work,
-      color,
       onComplete,
       onCancel,
     };
@@ -69,5 +59,5 @@ export const useTaskRunnerStore = defineStore("TaskRunnerStore", () => {
     resetTask();
   }
 
-  return { setTask, cancelTask, name, color, percentComplete };
+  return { setTask, cancelTask, id, name, color, percentComplete };
 });
