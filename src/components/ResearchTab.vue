@@ -1,66 +1,28 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useScienceStore } from "@/stores/ScienceStore";
 import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 import ResearchItem from "./ResearchItem.vue";
+import { doTask } from "@/logic/TasksHandler";
 
 const science = useScienceStore();
 const task = useTaskRunnerStore();
-const studyKnowledgeRunning = ref(false);
 
 // Only allow clickable button if task isn't running AND data exist
 const disableStudyKnowledge = computed(() => {
-  return studyKnowledgeRunning.value || science.data <= 0;
+  return task.id === "studyData" || science.data <= 0;
 });
 
 const onStudyKnowledge = () => {
-  task.setTask({
-    name: "Studying Data",
-    work: 40,
-    color: "primary",
-    onComplete: () => {
-      console.log("Studied Data");
-      science.convertDataToKnowledge();
-      studyKnowledgeRunning.value = false;
-    },
-    onCancel: () => {
-      console.log("Study Data Cancelled");
-      studyKnowledgeRunning.value = false;
-    },
-  });
-  studyKnowledgeRunning.value = true;
+  doTask("studyData");
 };
 
 const onResearchManipulation = () => {
-  console.log("onResearchManipulation triggered");
-  task.setTask({
-    name: "Researching Manipulation Methods",
-    work: 50,
-    color: "primary",
-    onComplete: () => {
-      console.log("Researched Manipulation Methods");
-      science.unlockManipulation();
-    },
-    onCancel: () => {
-      console.log("Research Manipulation Methods Cancelled");
-    },
-  });
+  doTask("researchManipulation");
 };
 
 const onResearchQuantification = () => {
-  console.log("onResearchQuantification triggered");
-  task.setTask({
-    name: "Researching Quantification Methods",
-    work: 50,
-    color: "primary",
-    onComplete: () => {
-      console.log("Researched Quantification Methods");
-      science.unlockQuantification();
-    },
-    onCancel: () => {
-      console.log("Research Quantification Methods Cancelled");
-    },
-  });
+  doTask("researchQuantification");
 };
 </script>
 

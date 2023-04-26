@@ -5,22 +5,22 @@ import { useTaskRunnerStore } from "../stores/TaskRunnerStore";
 const task = useTaskRunnerStore();
 
 const taskColor = computed(() => {
-  return task.color() ?? "#000";
+  return task.color ?? "#000";
 });
 </script>
 
 <template>
   <v-sheet bg-color="#888">
     <div class="task-display">
-      <h2>{{ task.name() ?? "Idle" }}</h2>
-      <v-btn v-if="task.name()" @click="task.cancelTask">X</v-btn>
+      <h2>{{ task.name ?? "Idle" }}</h2>
+      <v-btn v-if="task.name" @click="task.cancelTask">X</v-btn>
     </div>
     <v-progress-linear
       height="10"
       :color="taskColor"
       rounded
       :model-value="task.percentComplete"
-      :class="task.name() ? '' : 'no-transition'"
+      :class="task.name ? '' : 'no-transition'"
     />
   </v-sheet>
 </template>

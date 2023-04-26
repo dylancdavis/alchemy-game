@@ -21,8 +21,7 @@ const expandCore = () => {
 };
 
 const contractCore = () => {
-  console.log("triggered contractCore");
-  core.contractCore();
+  doTask("contractCore");
 };
 </script>
 
