@@ -1,11 +1,11 @@
 <script setup>
 import { defineProps } from "vue";
 import { useCoresStore } from "@/stores/CoreStore";
-import { useScienceStore } from "@/stores/ScienceStore";
+import { useResearchStore } from "@/stores/ResearchStore";
 import TaskButton from "./TaskButton.vue";
 
 const core = useCoresStore();
-const science = useScienceStore();
+const research = useResearchStore();
 
 const props = defineProps(["selectedCore"]);
 </script>
@@ -14,22 +14,16 @@ const props = defineProps(["selectedCore"]);
   <v-container v-if="props.selectedCore === 'true'">
     <div class="flex">
       <h1>Essence Core</h1>
-      <h2 v-if="science.quantification">
+      <h2 v-if="research.completed.has('quantification')">
         ({{ core.essence }}/{{ core.essenceMax }})
       </h2>
     </div>
     <div class="button-box">
       <TaskButton taskId="gatherData" name="Gather Data" />
-      <TaskButton
-        v-if="science.manipulation"
-        taskId="expandCore"
-        name="Expand Core"
-      />
-      <TaskButton
-        v-if="science.manipulation"
-        taskId="contractCore"
-        name="Contract Core"
-      />
+      <template v-if="research.completed.has('manipulation')">
+        <TaskButton taskId="expandCore" name="Expand Core" />
+        <TaskButton taskId="contractCore" name="Contract Core" />
+      </template>
     </div>
   </v-container>
 </template>

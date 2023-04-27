@@ -1,30 +1,25 @@
 <script setup>
 import { defineProps } from "vue";
+import { useResearchStore } from "../stores/ResearchStore";
 import TaskButton from "./TaskButton.vue";
 
-// eslint-disable-next-line no-unused-vars
-const props = defineProps([
-  "visible",
-  "name",
-  "chip",
-  "cost",
-  "description",
-  "taskId",
-]);
+const props = defineProps(["researchId"]);
+const ResearchStore = useResearchStore();
+const research = ResearchStore.getResearch(props.researchId);
 </script>
 
 <template>
-  <v-expansion-panel v-if="visible">
+  <v-expansion-panel>
     <v-expansion-panel-title>
       <div class="research-title">
-        <h3>{{ name }}</h3>
-        <v-chip>{{ chip }}</v-chip>
+        <h3>{{ research.display.name }}</h3>
+        <v-chip>{{ research.tag }}</v-chip>
       </div>
     </v-expansion-panel-title>
     <v-expansion-panel-text>
-      <h5>Cost: {{ cost }} Knowledge</h5>
-      <p>{{ description }}</p>
-      <TaskButton :taskId="props.taskId" />
+      <h5>Cost: {{ research.costs.knowledge }} Knowledge</h5>
+      <p>{{ research.display.description }}</p>
+      <TaskButton :taskId="research.taskId" />
     </v-expansion-panel-text>
   </v-expansion-panel>
 </template>

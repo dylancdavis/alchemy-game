@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useScienceStore } from "./ScienceStore";
 import { useCoresStore } from "./CoreStore";
+import { useResearchStore } from "./ResearchStore";
 
 export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
   // State
@@ -32,7 +33,7 @@ export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
       work: 20,
       onComplete: () => {
         const science = useScienceStore();
-        science.convertDataToKnowledge();
+        science.studyData();
       },
     },
     expandCore: {
@@ -67,8 +68,8 @@ export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
       },
       work: 20,
       onComplete: () => {
-        const science = useScienceStore();
-        science.unlockManipulation();
+        const research = useResearchStore();
+        research.complete("manipulation");
       },
     },
     researchQuantification: {
@@ -79,8 +80,8 @@ export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
       },
       work: 20,
       onComplete: () => {
-        const science = useScienceStore();
-        science.unlockQuantification();
+        const research = useResearchStore();
+        research.complete("quantification");
       },
     },
   });

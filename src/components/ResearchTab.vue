@@ -30,23 +30,8 @@ const science = useScienceStore();
   <v-sheet class="fill-height theories">
     <h3>Theories</h3>
     <v-expansion-panels variant="accordion">
-      <ResearchItem
-        :visible="!science.manipulation"
-        name="Manipulation Methods"
-        chip="core theory"
-        cost="5"
-        description="basic methods to interact with essence cores"
-        taskId="researchManipulation"
-      />
-      <ResearchItem
-        :visible="!science.quantification"
-        name="Quantification Methods"
-        chip="core theory"
-        cost="2"
-        description="determine quantities of essence within cores"
-        :disabled="science.knowledge < 2"
-        taskId="researchQuantification"
-      />
+      <ResearchItem researchId="manipulation" />
+      <ResearchItem researchId="quantification" />
     </v-expansion-panels>
   </v-sheet>
 </template>
