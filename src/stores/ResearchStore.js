@@ -5,6 +5,14 @@ import { ref } from "vue";
 export const useResearchStore = defineStore("ResearchStore", () => {
   // State
   const researchables = ref({
+    basicResearch: {
+      display: {
+        name: "Fundamental Research Methods",
+        description: "Develop methods to record and analyze data",
+      },
+      tag: "fundamentals",
+      taskId: "researchBasicResearch",
+    },
     manipulation: {
       display: {
         name: "Manipulation Methods",
@@ -29,7 +37,7 @@ export const useResearchStore = defineStore("ResearchStore", () => {
     },
   });
 
-  const available = ref(new Set(["manipulation", "quantification"]));
+  const available = ref(new Set(["basicResearch"]));
   const completed = ref(new Set());
 
   function getResearch(researchId) {

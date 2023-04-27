@@ -45,5 +45,6 @@ const selectedTab = ref("research");
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #ddd;
 }
 </style>

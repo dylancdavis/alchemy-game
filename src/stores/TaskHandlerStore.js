@@ -9,6 +9,17 @@ import { useResearchStore } from "./ResearchStore";
 export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
   // State
   const tasks = ref({
+    null: {
+      display: {
+        presentName: "Null Task",
+        infinitiveName: "🔒",
+        color: "grey",
+      },
+      work: 1,
+      onComplete: () => {
+        console.log("Null task completed. How did you do this?");
+      },
+    },
     gatherData: {
       display: {
         presentName: "Observing Core",
@@ -58,6 +69,20 @@ export const useTaskHandlerStore = defineStore("TaskHandlerStore", () => {
       onComplete: () => {
         const core = useCoresStore();
         core.contractCore();
+      },
+    },
+    researchBasicResearch: {
+      display: {
+        presentName: "Researching Basic Research Methods",
+        infinitiveName: "Research",
+        color: "blue-grey",
+      },
+      work: 100,
+      onComplete: () => {
+        const research = useResearchStore();
+        research.complete("basicResearch");
+        research.unlock("manipulation");
+        research.unlock("quantification");
       },
     },
     researchManipulation: {

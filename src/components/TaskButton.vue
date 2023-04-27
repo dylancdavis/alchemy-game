@@ -11,6 +11,7 @@ const TasksHandler = useTaskHandlerStore();
 const task = TasksHandler.getTask(props.taskId);
 
 const disableTask = computed(() => {
+  if (props.taskId === "null") return true;
   return TaskRunner.id === props.taskId;
 });
 
@@ -64,6 +65,10 @@ const gradientBeforeStyle = computed(() => {
   transition: opacity 0.5s linear;
   opacity: 0;
   border-radius: inherit;
+}
+
+svg {
+  height: 16px;
 }
 
 .gradient-button:hover::before {

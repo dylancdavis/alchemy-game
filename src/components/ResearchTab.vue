@@ -9,51 +9,68 @@ const research = useResearchStore();
 </script>
 
 <template>
-  <v-table>
-    <tbody>
-      <tr>
-        <td><h2>Data</h2></td>
-        <td>
-          <h2>{{ science.data }}</h2>
-        </td>
-        <td>
-          <TaskButton taskId="studyData" />
-        </td>
-      </tr>
-      <tr>
-        <td><h2>Knowledge</h2></td>
-        <td>
-          <h2>{{ science.knowledge }}</h2>
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
-  <v-divider class="border-opacity-75" />
-  <v-sheet class="fill-height theories">
-    <h3>Theories</h3>
-    <v-expansion-panels variant="accordion">
-      <ResearchItem
-        v-for="r in [...research.available]"
-        :key="r"
-        :researchId="r"
-      />
-      <!-- <ResearchItem researchId="manipulation" />
-      <ResearchItem researchId="quantification" /> -->
-    </v-expansion-panels>
-  </v-sheet>
+  <div class="container">
+    <v-card>
+      <v-table>
+        <tbody>
+          <tr>
+            <td><h2>Data</h2></td>
+            <td>
+              <h2>{{ science.data }}</h2>
+            </td>
+            <td>
+              <Transition>
+                <TaskButton
+                  v-if="research.completed.has('basicResearch')"
+                  taskId="studyData"
+                />
+                <TaskButton taskId="null" v-else />
+              </Transition>
+            </td>
+          </tr>
+          <tr v-show="research.completed.has('basicResearch')">
+            <td><h2>Knowledge</h2></td>
+            <td>
+              <h2>{{ science.knowledge }}</h2>
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+    </v-card>
+    <v-card class="fill-height theories">
+      <h3>Theories</h3>
+      <v-expansion-panels variant="accordion">
+        <ResearchItem
+          v-for="r in [...research.available]"
+          :key="r"
+          :researchId="r"
+        />
+      </v-expansion-panels>
+    </v-card>
+  </div>
 </template>
 
 <style scoped>
-.theories {
-  border-bottom: 1px solid grey;
-}
-
 h3 {
   padding: 1em;
-  background-color: lavender;
+  background-color: rgb(52, 52, 52);
+  color: white;
 }
 
-.v-card {
-  padding: 1em;
+.container {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

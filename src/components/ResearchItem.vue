@@ -17,9 +17,13 @@ const research = ResearchStore.getResearch(props.researchId);
       </div>
     </v-expansion-panel-title>
     <v-expansion-panel-text>
-      <h5>Cost: {{ research.costs.knowledge }} Knowledge</h5>
-      <p>{{ research.display.description }}</p>
-      <TaskButton :taskId="research.taskId" />
+      <div class="flex">
+        <h4 v-if="research.costs">
+          Cost: {{ research.costs.knowledge }} Knowledge
+        </h4>
+        <p>{{ research.display.description }}</p>
+        <TaskButton :taskId="research.taskId" />
+      </div>
     </v-expansion-panel-text>
   </v-expansion-panel>
 </template>
@@ -29,5 +33,12 @@ const research = ResearchStore.getResearch(props.researchId);
   display: flex;
   align-items: center;
   gap: 1em;
+}
+
+.flex {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>
