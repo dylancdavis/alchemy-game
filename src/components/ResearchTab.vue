@@ -1,9 +1,11 @@
 <script setup>
 import { useScienceStore } from "@/stores/ScienceStore";
+import { useResearchStore } from "@/stores/ResearchStore";
 import ResearchItem from "./ResearchItem.vue";
 import TaskButton from "./TaskButton.vue";
 
 const science = useScienceStore();
+const research = useResearchStore();
 </script>
 
 <template>
@@ -30,8 +32,13 @@ const science = useScienceStore();
   <v-sheet class="fill-height theories">
     <h3>Theories</h3>
     <v-expansion-panels variant="accordion">
-      <ResearchItem researchId="manipulation" />
-      <ResearchItem researchId="quantification" />
+      <ResearchItem
+        v-for="r in [...research.available]"
+        :key="r"
+        :researchId="r"
+      />
+      <!-- <ResearchItem researchId="manipulation" />
+      <ResearchItem researchId="quantification" /> -->
     </v-expansion-panels>
   </v-sheet>
 </template>
