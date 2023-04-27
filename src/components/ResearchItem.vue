@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
+import TaskButton from "./TaskButton.vue";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps([
@@ -8,8 +9,7 @@ const props = defineProps([
   "chip",
   "cost",
   "description",
-  "disabled",
-  "onClick",
+  "taskId",
 ]);
 </script>
 
@@ -24,7 +24,7 @@ const props = defineProps([
     <v-expansion-panel-text>
       <h5>Cost: {{ cost }} Knowledge</h5>
       <p>{{ description }}</p>
-      <v-btn @click="onClick" :disabled="disabled"> Research </v-btn>
+      <TaskButton :taskId="props.taskId" />
     </v-expansion-panel-text>
   </v-expansion-panel>
 </template>

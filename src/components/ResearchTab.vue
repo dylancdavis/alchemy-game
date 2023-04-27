@@ -1,29 +1,9 @@
 <script setup>
-import { computed } from "vue";
 import { useScienceStore } from "@/stores/ScienceStore";
-import { useTaskRunnerStore } from "@/stores/TaskRunnerStore";
 import ResearchItem from "./ResearchItem.vue";
-import { doTask } from "@/logic/TasksHandler";
+import TaskButton from "./TaskButton.vue";
 
 const science = useScienceStore();
-const task = useTaskRunnerStore();
-
-// Only allow clickable button if task isn't running AND data exist
-const disableStudyKnowledge = computed(() => {
-  return task.id === "studyData" || science.data <= 0;
-});
-
-const onStudyKnowledge = () => {
-  doTask("studyData");
-};
-
-const onResearchManipulation = () => {
-  doTask("researchManipulation");
-};
-
-const onResearchQuantification = () => {
-  doTask("researchQuantification");
-};
 </script>
 
 <template>
@@ -35,9 +15,7 @@ const onResearchQuantification = () => {
           <h2>{{ science.data }}</h2>
         </td>
         <td>
-          <v-btn @click="onStudyKnowledge" :disabled="disableStudyKnowledge"
-            >Study Data</v-btn
-          >
+          <TaskButton taskId="studyData" />
         </td>
       </tr>
       <tr>
@@ -58,8 +36,7 @@ const onResearchQuantification = () => {
         chip="core theory"
         cost="5"
         description="basic methods to interact with essence cores"
-        :disabled="science.knowledge < 5"
-        :onClick="onResearchManipulation"
+        taskId="researchManipulation"
       />
       <ResearchItem
         :visible="!science.quantification"
@@ -68,7 +45,7 @@ const onResearchQuantification = () => {
         cost="2"
         description="determine quantities of essence within cores"
         :disabled="science.knowledge < 2"
-        :onClick="onResearchQuantification"
+        taskId="researchQuantification"
       />
     </v-expansion-panels>
   </v-sheet>

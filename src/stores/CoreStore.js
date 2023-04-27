@@ -7,9 +7,10 @@ export const useCoresStore = defineStore("CoreStore", () => {
   const essence = ref(0);
   const essenceMax = ref(10);
   const essenceMaxLimit = 1000;
+  const expandAmt = ref(5);
 
-  function incrementEssenceBy(amt) {
-    essence.value += amt;
+  function expandCore() {
+    essence.value += expandAmt.value;
     if (essence.value > essenceMax.value) {
       essence.value = essenceMax.value;
     }
@@ -23,5 +24,5 @@ export const useCoresStore = defineStore("CoreStore", () => {
     essence.value = 0;
   }
 
-  return { essence, essenceMax, incrementEssenceBy, contractCore };
+  return { essence, essenceMax, expandCore, contractCore };
 });
