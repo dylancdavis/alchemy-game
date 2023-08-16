@@ -19,7 +19,11 @@ const props = defineProps(["selectedCore"]);
       </h2>
     </div>
     <div class="button-box">
-      <TaskButton taskId="gatherData" name="Gather Data" />
+      <TaskButton
+        v-if="research.completed.has('basicResearch')"
+        taskId="gatherData"
+        name="Gather Data"
+      />
       <template v-if="research.completed.has('manipulation')">
         <TaskButton taskId="expandCore" name="Expand Core" />
         <TaskButton taskId="contractCore" name="Contract Core" />

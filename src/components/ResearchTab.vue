@@ -19,13 +19,10 @@ const research = useResearchStore();
               <h2>{{ science.data }}</h2>
             </td>
             <td>
-              <Transition>
-                <TaskButton
-                  v-if="research.completed.has('basicResearch')"
-                  taskId="studyData"
-                />
-                <TaskButton taskId="null" v-else />
-              </Transition>
+              <TaskButton
+                v-if="research.completed.has('basicResearch')"
+                taskId="studyData"
+              />
             </td>
           </tr>
           <tr v-show="research.completed.has('basicResearch')">
@@ -39,7 +36,7 @@ const research = useResearchStore();
     </v-card>
     <v-card class="fill-height theories">
       <h3>Theories</h3>
-      <v-expansion-panels variant="accordion">
+      <v-expansion-panels variant="accordion" multiple>
         <ResearchItem
           v-for="r in [...research.available]"
           :key="r"
